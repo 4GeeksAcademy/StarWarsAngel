@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 
@@ -10,6 +10,10 @@ import injectContext from "./store/appContext";
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 
+import { Characters } from "./views/characters";
+import { Planets } from "./views/planets";
+import { Vehicles } from "./views/vehicles";
+
 //create your first component
 const Layout = () => {
 	//the basename is used when your project is published in a subdirectory and not in the root of the domain
@@ -20,9 +24,12 @@ const Layout = () => {
 		<div>
 			<BrowserRouter basename={basename}>
 				<ScrollToTop>
-					<Navbar />
-					<Routes>
+				    <Navbar />
+					<Routes> 
 						<Route path="/" element={<Home />} />
+						<Route path="/characters" element={<Characters />} />
+						<Route path="/planets" element={<Planets />} />
+                        <Route path="/vehicles" element={<Vehicles />} />           
 						<Route path="/demo" element={<Demo />} />
 						<Route path="/single/:theid" element={<Single />} />
 						<Route path="*" element={<h1>Not found!</h1>} />
@@ -33,5 +40,6 @@ const Layout = () => {
 		</div>
 	);
 };
+
 
 export default injectContext(Layout);
