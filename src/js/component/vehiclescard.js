@@ -5,6 +5,10 @@ import { Context } from "../store/appContext";
 export const Vehiclescard = () => {
     const { store, actions } = useContext(Context);
 
+    const handleToggleFavorite = (nombre) => {
+        actions.añadirAFavorito(nombre);
+    };
+
     const getVehiclesImageUrl = (vehiclesId) => {
         return `https://starwars-visualguide.com/assets/img/vehicles/${vehiclesId}.jpg`;
       };
@@ -12,7 +16,7 @@ export const Vehiclescard = () => {
     return (
 
         <div className="container">
-            <h2 className="text-danger mb-3">Vehicles</h2>
+            <h2 className="text-danger mb-4 d-flex">Vehicles</h2>
             <div className="row">
                 {store.vehicles && store.vehicles.length > 0 && store.vehicles.map((item, id) => (
                     <div className="col md-4" key={id}>
@@ -20,12 +24,11 @@ export const Vehiclescard = () => {
                             <img src={getVehiclesImageUrl(id + 1)} style={{ width:"200px", height:"200px" }} className="card-img-top" alt="Contact Avatar" />
                             <div className="card-body">
                                 <h6><b>Nombre:</b> {item.name}</h6>
-                                <h6><b>Genero:</b> {item.gender}</h6>
                                 <div className="d-flex justify-content-between">
-                                    <Link to="/characters">
-                                        <button className="btn bg-success"><h6 className="text-white">Learn More</h6></button>
+                                    <Link to={`/vehiclesdetails/vehicles/${item.uid}`}>
+                                        <button className="badge rounded-pill bg-dark text-white mt-2">Learn More</button>
                                     </Link>
-                                    <button className="btn btn-primary" onClick={() => actions.addFavoritos("Nuevo Favorito")}>
+                                    <button className="btn btn-white" onClick={() => handleToggleFavorite(item.name)}>
                                         ❤️
                                     </button>
                                 </div>
