@@ -9,8 +9,8 @@ export const Planetscard = () => {
         actions.añadirAFavorito(nombre);
     };
 
-    const getPlanetsImageUrl = (planetsId) => {
-        return `https://starwars-visualguide.com/assets/img/planets/${planetsId}.jpg`;
+    const getPlanetsImageUrl = (planetsUid) => {
+        return `https://starwars-visualguide.com/assets/img/planets/${planetsUid}.jpg`;
     };
 
     return (
@@ -21,7 +21,7 @@ export const Planetscard = () => {
                 {store.planets && store.planets.length > 0 && store.planets.map((item, id) => (
                     <div className="col md-4" key={id}>
                         <div className="card mb-5 d-inline-block">
-                            <img src={getPlanetsImageUrl(id + 1)} style={{ width: "210px", height: "215px" }} className="card-img-top" alt="Contact Avatar" />
+                            <img src={getPlanetsImageUrl(item.uid)} style={{ width: "210px", height: "215px" }} className="card-img-top" alt="Contact Avatar" />
                             <div className="card-body">
                                 <h6><b>Nombre:</b> {item.name}</h6>
                                 <div className="d-flex justify-content-between">

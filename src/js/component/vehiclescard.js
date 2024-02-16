@@ -9,8 +9,8 @@ export const Vehiclescard = () => {
         actions.añadirAFavorito(nombre);
     };
 
-    const getVehiclesImageUrl = (vehiclesId) => {
-        return `https://starwars-visualguide.com/assets/img/vehicles/${vehiclesId}.jpg`;
+    const getVehiclesImageUrl = (vehiclesUid) => {
+        return `https://starwars-visualguide.com/assets/img/vehicles/${vehiclesUid}.jpg`;
       };
 
     return (
@@ -21,7 +21,7 @@ export const Vehiclescard = () => {
                 {store.vehicles && store.vehicles.length > 0 && store.vehicles.map((item, id) => (
                     <div className="col md-4" key={id}>
                         <div className="card mb-5">
-                            <img src={getVehiclesImageUrl(id + 1)} style={{ width:"200px", height:"200px" }} className="card-img-top" alt="Contact Avatar" />
+                            <img src={getVehiclesImageUrl(item.uid)} style={{ width:"200px", height:"200px" }} className="card-img-top" alt="Contact Avatar" />
                             <div className="card-body">
                                 <h6><b>Nombre:</b> {item.name}</h6>
                                 <div className="d-flex justify-content-between">
